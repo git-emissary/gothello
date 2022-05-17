@@ -11,6 +11,7 @@ func assertEqualBoards(t *testing.T, b1 Board, b2 Board) {
 	if !reflect.DeepEqual(b1, b2) {
 		err := fmt.Errorf("\nwant: %s\n\ngot: %s", b1.ToString(), b2.ToString())
 		t.Error(err)
+    t.FailNow()
 	}
 }
 
@@ -28,11 +29,11 @@ func TestFlipRow(t *testing.T) {
 	for j := 0; j < 4; j++ {
 		expected.setDisk(1, j, ORB)
 	}
-
+  
 	board.Flip(1, 0, 1, 3, ORB) // flip left to right
 	assertEqualBoards(t, expected, board)
-
-	board = NewEmptyBoard(4)
+  
+  board = NewEmptyBoard(4)
 	board.Flip(1, 3, 1, 0, ORB) // flip right to left
 	assertEqualBoards(t, expected, board)
 }
